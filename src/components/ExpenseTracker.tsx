@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { Expense, Budget, ExpenseCategory } from "@/types/expense";
 import ExpenseForm from "./ExpenseForm";
@@ -68,6 +67,16 @@ const ExpenseTracker = () => {
     });
   };
 
+  const deleteBudget = (category: ExpenseCategory) => {
+    const updatedBudgets = budgets.filter(b => b.category !== category);
+    setBudgets(updatedBudgets);
+    saveBudgets(updatedBudgets);
+    toast({
+      title: "Budget Deleted",
+      description: `Budget for ${category} has been removed`,
+    });
+  };
+
   return (
     <div className="container mx-auto py-8 space-y-8">
       <div className="text-center mb-8">
@@ -78,7 +87,11 @@ const ExpenseTracker = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="space-y-8">
           <ExpenseForm onSubmit={addExpense} />
-          <BudgetManager budgets={budgets} onSaveBudget={saveBudget} />
+          <BudgetManager 
+            budgets={budgets} 
+            onSaveBudget={saveBudget} 
+            onDeleteBudget={deleteBudget}
+          />
         </div>
         <div>
           <ExpenseChart expenses={expenses} />
