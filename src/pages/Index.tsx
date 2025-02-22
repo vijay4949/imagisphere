@@ -1,10 +1,10 @@
 
-import TodoList from "@/components/TodoList";
+import ExpenseTracker from "@/components/ExpenseTracker";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-gray-50">
-      <TodoList />
+      <ExpenseTracker />
     </div>
   );
 };
